@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import { productRouter } from './routes/product.route';
 
 const app: Express = express();
-const port: number = 3000;
+const port: number = 3001;
 
 app.use('/products', productRouter);
 
