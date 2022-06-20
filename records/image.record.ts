@@ -11,4 +11,9 @@ export class ImageRecord {
     const [images] = await pool.query<ImageEntity[]>('SELECT * FROM `images`', []);
     return images;
   }
+
+  static async getProductImages(productId: string): Promise<Image[]> {
+    const [images] = await pool.query<ImageEntity[]>('SELECT * FROM `images` WHERE `productId` = :productId', { productId });
+    return images;
+  }
 }
