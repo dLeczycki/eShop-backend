@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
+import { Log } from "./log";
 
 class ValidationError extends Error { }
 
 export const handleError = (err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(`⛔ ${err}`);
+  Log.error(`${err}`);
 
   if (err.name === 'UnauthorizedError') {
     return res
