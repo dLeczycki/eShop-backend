@@ -11,4 +11,9 @@ export class ProductRecord {
     const [products] = await pool.query<ProductEntity[]>('SELECT * FROM `products`', []);
     return products;
   }
+
+  static async getProduct(id: string): Promise<Product | null> {
+    const [products] = await pool.query<ProductEntity[]>('SELECT * FROM `products` WHERE `id` = :id', { id });
+    return products.length === 1 ? products[0] : null;
+  }
 }

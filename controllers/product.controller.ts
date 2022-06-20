@@ -7,9 +7,16 @@ export async function getProducts(req: Request, res: Response) {
   return res.json(products);
 }
 
-export async function getProductImages(req: Request, res: Response) {
-  const { productId } = req.params;
+export async function getProduct(req: Request, res: Response) {
+  const { id } = req.params;
 
-  const images = await ImageRecord.getProductImages(productId as string);
+  const product = await ProductRecord.getProduct(id as string);
+  return res.json(product);
+}
+
+export async function getProductImages(req: Request, res: Response) {
+  const { id } = req.params;
+
+  const images = await ImageRecord.getProductImages(id as string);
   return res.json(images);
 }
