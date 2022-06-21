@@ -1,4 +1,5 @@
-import express, { Express } from 'express';
+import express from 'express';
+import cors from 'cors';
 require('express-async-errors');
 
 import { config } from './config/config';
@@ -9,9 +10,12 @@ import { productRouter } from './routes/product.route';
 import { imageRouter } from './routes/image.route';
 import { logRequest } from './middleware/log-request';
 
-const app: Express = express();
+const app = express();
 const port: number = 3001;
 
+app.use(cors({
+  origin: config.appUrl,
+}));
 app.use(express.static(config.publicPath));
 
 app.use(logRequest);
