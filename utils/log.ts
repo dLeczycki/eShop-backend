@@ -1,6 +1,6 @@
 export class Log {
   static error = (message: string): void => {
-    console.log(`⛔ ${message}`);
+    console.error(`⛔ ${message}`);
   }
 
   static action = (message: string): void => {
@@ -9,5 +9,9 @@ export class Log {
 
   static info = (message: string): void => {
     console.log(`🟢 ${message}`);
+  }
+
+  static data = (data: any): void => {
+    console.log(data);
   }
 }
