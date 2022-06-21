@@ -3,4 +3,5 @@ export const config = {
   dbUser: 'root',
   dbDatabase: 'eshop',
   publicPath: 'public',
+  appUrl: 'http://localhost:3000'
 }
