@@ -4,3 +4,8 @@ export interface Shipment {
   icon: any;
   price: number;
 }
+
+export interface Payment {
+  name: string;
+  fullName: string;
+}
