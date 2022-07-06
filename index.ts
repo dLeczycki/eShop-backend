@@ -8,6 +8,7 @@ import { Log } from './utils/log';
 
 import { productRouter } from './routes/product.route';
 import { imageRouter } from './routes/image.route';
+import { orderRouter } from './routes/order.route';
 import { logRequest } from './middleware/log-request';
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.static(config.publicPath));
 app.use(logRequest);
 app.use('/products', productRouter);
 app.use('/images', imageRouter);
+app.use('/orders', orderRouter);
 
 app.use(handleNotFound);
 app.use(handleError);

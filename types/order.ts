@@ -1,3 +1,10 @@
+export interface Order {
+  recipient: Recipient;
+  shipment: Shipment;
+  payment: Payment;
+  checkoutProducts: OrderProduct[];
+}
+
 export interface Recipient {
   firstname: string;
   lastname: string;
@@ -28,4 +35,9 @@ export interface Shipment {
 export interface Payment {
   name: string;
   fullName: string;
+}
+
+export interface OrderProduct {
+  productId: string;
+  count: number;
 }
