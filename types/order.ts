@@ -1,4 +1,4 @@
-export interface DeliveryType {
+export interface Shipment {
   name: string;
   fullName: string;
   icon: any;
