@@ -18,7 +18,7 @@ export async function postOrder(req: Request, res: Response) {
       await orderProduct.insert(order.number);
     }
 
-    return res.status(201).json({ redirectUrl: 'http://localhost:3000/zamowienie/zakonczone' });
+    return res.status(201).json({ redirectUrl: 'http://localhost:3000/zamowienie/platnosc' });
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
