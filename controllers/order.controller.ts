@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { OrderRecord } from "../records/order.record";
+import { OrderProductRecord } from "../records/orderProduct.record";
 import { OrderToPlace } from "../types";
 import { isOrderToPlaceValid } from "../utils/helpers";
 
@@ -12,7 +13,10 @@ export async function postOrder(req: Request, res: Response) {
     await order.calculateOrderAmount(orderToPlace);
     await order.insert();
 
-    //TODO: Insert orderProducts
+    for (const orderToPlaceProduct of orderToPlace.orderProducts) {
+      const orderProduct = new OrderProductRecord(orderToPlaceProduct);
+      await orderProduct.insert(order.number);
+    }
 
     return res.status(201).json({ redirectUrl: 'http://localhost:3000/zamowienie/zakonczone' });
   } catch (error) {
