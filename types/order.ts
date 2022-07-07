@@ -1,12 +1,3 @@
-import { Shipment } from "./shipment";
-
-export interface Order {
-  recipient: Recipient;
-  shipment: Shipment;
-  payment: Payment;
-  orderProducts: OrderProduct[];
-}
-
 export interface Recipient {
   firstname: string;
   lastname: string;
@@ -17,16 +8,7 @@ export interface Recipient {
   address: string;
 }
 
-export interface RecipientError {
-  firstname: string;
-  lastname: string;
-  email: string;
-  phone: string;
-  postalCode: string;
-  city: string;
-  address: string;
-}
-
+export interface RecipientError extends Required<Recipient> { }
 
 export interface Payment {
   name: string;
@@ -36,4 +18,23 @@ export interface Payment {
 export interface OrderProduct {
   productId: string;
   count: number;
+}
+
+export interface OrderToPlace extends Recipient {
+  shipmentName: string;
+  paymentName: string;
+  orderProducts: OrderProduct[];
+}
+
+export interface Order extends Omit<OrderToPlace, 'orderProducts'> {
+  number?: number;
+  status?: OrderStatus;
+  amount?: number
+}
+
+export enum OrderStatus {
+  FRESH = "fresh",
+  IN_PROGRESS = "in-progress",
+  SENT = "sent",
+  FINISHED = "finished",
 }

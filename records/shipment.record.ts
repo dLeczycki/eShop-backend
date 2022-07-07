@@ -9,4 +9,9 @@ export class ShipmentRecord {
     const [shipments] = await pool.query<ShipmentEntity[]>('SELECT * FROM `shipments`', []);
     return shipments;
   }
+
+  static async getShipment(shipmentName: string): Promise<Shipment> {
+    const [shipments] = await pool.query<ShipmentEntity[]>('SELECT * FROM `shipments` WHERE name = :shipmentName', { shipmentName });
+    return shipments[0];
+  }
 }
