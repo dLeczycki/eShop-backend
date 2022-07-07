@@ -1,8 +1,10 @@
+import { Shipment } from "./shipment";
+
 export interface Order {
   recipient: Recipient;
   shipment: Shipment;
   payment: Payment;
-  checkoutProducts: OrderProduct[];
+  orderProducts: OrderProduct[];
 }
 
 export interface Recipient {
@@ -25,12 +27,6 @@ export interface RecipientError {
   address: string;
 }
 
-export interface Shipment {
-  name: string;
-  fullName: string;
-  icon: any;
-  price: number;
-}
 
 export interface Payment {
   name: string;
