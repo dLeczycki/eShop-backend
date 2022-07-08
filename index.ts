@@ -1,12 +1,35 @@
-import express, { Express, Request, Response } from 'express';
+import express from 'express';
+import cors from 'cors';
+require('express-async-errors');
 
-const app: Express = express();
-const port: number = 3000;
+import { config } from './config/config';
+import { handleError, handleNotFound } from './utils/helpers';
+import { Log } from './utils/log';
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello');
-});
+import { productRouter } from './routes/product.route';
+import { imageRouter } from './routes/image.route';
+import { shipmentRouter } from './routes/shipment.route';
+import { orderRouter } from './routes/order.route';
+import { logRequest } from './middleware/log-request';
+
+const app = express();
+const port: number = 3001;
+
+app.use(express.json());
+app.use(cors({
+  origin: config.appUrl,
+}));
+app.use(express.static(config.publicPath));
+
+app.use(logRequest);
+app.use('/products', productRouter);
+app.use('/images', imageRouter);
+app.use('/shipments', shipmentRouter);
+app.use('/orders', orderRouter);
+
+app.use(handleNotFound);
+app.use(handleError);
 
 app.listen(port, () => {
-  console.log(`⚡️ Eshop-backend is running at http://localhost:${port}`);
+  Log.action(`Eshop-backend is running at http://localhost:${port}`);
 })
