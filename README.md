@@ -28,6 +28,7 @@
   <ul>
     <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
     <li><a href="https://expressjs.com/">ExpressJS</a></li>
+    <li><a href="https://www.mysql.com/">MySQL database</a></li>
   </ul>
 
 
@@ -77,6 +78,14 @@ Install node_modules with npm
 
 <br />
 
+### 📚 Prepare database
+
+Script for database creation is located in eshop_db.sql file with data corresponding to images already pushed to this repository.
+
+Import SQL to your local MySQL provider
+
+<br />
+
 <!-- Run Locally -->
 ### ⚡ Run Locally
 
@@ -110,7 +119,9 @@ Start the server
 <!-- Deployment -->
 ### 🌀 Deployment
 
-At first change config/config.ts file to production configuration
+Prepare online database
+
+Change config/config.ts file to production configuration
 
 To create production build run
 
